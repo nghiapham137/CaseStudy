@@ -1,8 +1,7 @@
 var Cars = [];
-var level = 1;
+
 
 //Khởi tạo lớp Cars
-
 let Car = function (y) {
     this.y = y;
     this.img = new Image();

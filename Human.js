@@ -1,33 +1,9 @@
-var canvas = document.getElementById("myCanvas");
-var ctx = canvas.getContext("2d");
+
 var image = new Image();
 image.src = "images/captainamerica.png";
 var human;
-var setinterVal;
-var count = 0;
-
-window.addEventListener("keydown",HumanMove);
-window.addEventListener("keyup",stopMoving);
-
-function startGame() {
-    human = new Human(image,250,602,32,48);
-    Cars[0] = new Car(37);
-    Cars[1] = new Car(160);
-    Cars[2] = new Car(280);
-    Cars[3] = new Car(400);
-    Cars[4] = new Car(497);
-    Cars[5] = new Car(540);
-    for (let i = 0; i < Cars.length; i++){
-        Cars[i].show();
-    }
-    // gameover = new Gameover(gameoverimg);
-
-    setinterVal = setInterval(updateGameScreen,20);
 
 
-
-
-}
 
 //Khởi tạo lớp Human
 let Human = function (img,x,y,width,height) {
@@ -59,6 +35,7 @@ let Human = function (img,x,y,width,height) {
 
     }
 
+    //Set va chạm
     this.Intersect = function(cars) {
         var humanLeft = human.x + (human.width/3);
         var humanRight = human.x + (human.width*2/3);
@@ -78,7 +55,7 @@ let Human = function (img,x,y,width,height) {
     }
 }
 
-function HumanMove(evt) {
+function movingHuman(evt) {
     switch (evt.keyCode) {
         case 37:
             human.frameY = 1;
@@ -121,39 +98,11 @@ function handleHumanFrame() {
 
 }
 
-function updateGameScreen() {
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-
-    for (let i = 0; i < Cars.length; i++){
-        if (!human.Intersect(Cars[i])){
-            Cars[i].Carposition();
-            Cars[i].drawCar();
-            Cars[i].MoveCar();
-
-        }else {
-            StopGame();
-        }
-    }
-    human.position();
-    human.drawImage();
-    handleHumanFrame();
-    changeLevel();
-    PlayerScore();
-}
 
 
-function StopGame() {
-    clearInterval(setinterVal);
-    // gameover.drawImage();
-    gameOver();
-}
 
-function changeLevel() {
-    if (human.y < 0 - human.height){
-        human.y = canvas.height - human.height;
-        level += 0.5;
-        count++;
-    }
-}
+
+
+
 
 
