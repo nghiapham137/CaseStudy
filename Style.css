@@ -1,0 +1,23 @@
+@font-face { font-family: SuperLegendBoy; src: url('font/SuperLegendBoy-4w8Y.ttf'); }
+
+* {
+    background-image: linear-gradient(to bottom,gray,white);
+}
+
+#myCanvas {
+    border: 1px solid black;
+    margin-left: 500px;
+    margin-top: 50px;
+    background-color: sandybrown;
+    background-image: url("images/horizontal-straight-seamless-roads-modern-asphalt-repetitive-highways_53562-4801.jpg");
+
+}
+
+#score {
+    border: 1px solid black;
+    width: 50px;
+    height: 50px;
+    padding: 10px 10px 10px 10px;
+    float: top;
+
+}
