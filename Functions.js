@@ -17,14 +17,14 @@ window.addEventListener("keyup",stopMoving);
 window.addEventListener("keypress",resetGame);
 window.addEventListener("keypress",startGame);
 
-function showStartScreen(){
 
+function showStartScreen(){
     ctx.font = "45px SuperLegendBoy";
     ctx.fillText("Cpt.AMERICA",50 ,80);
     ctx.font = "45px SuperLegendBoy";
     ctx.fillText("Helper",150 ,130);
     ctx.font = "25px SuperLegendBoy";
-    ctx.fillText("Press ANY KEY",125  ,300);
+    ctx.fillText("Press SPACE",125  ,300);
     ctx.font = "25px SuperLegendBoy";
     ctx.fillText("to play",200,327);
 }
@@ -45,6 +45,7 @@ function startGame() {
     }
     setinterVal = setInterval(updateGameScreen,20);
 }
+
 
 function updateGameScreen() {
     ctx.clearRect(0,0,canvas.width,canvas.height);
@@ -69,10 +70,12 @@ function updateGameScreen() {
     currentScore();
 }
 
+
 function StopGame() {
     clearInterval(setinterVal);
     alertGameOver();
 }
+
 
 function resetGame(evt) {
     if (evt.keyCode === 13){
