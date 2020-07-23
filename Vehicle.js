@@ -34,14 +34,14 @@ let Car = function (y) {
     this.MoveCar = function () {
         let num = Math.floor(Math.random()*(8)+1);
         if (this.way <= 0){
-            this.directionX = 5 * level;
+            this.directionX = 3 * level;
             this.directionY = 0;
             if (this.x > canvas.width + this.width){
                 this.x = - this.width*2;
                 this.img.src = "images/left" + num + ".png";
             }
         }else {
-            this.directionX = -5 * level;
+            this.directionX = -3 * level;
             this.directionY = 0;
             if (this.x < 0 - this.width){
                 this.x = canvas.width + this.width;

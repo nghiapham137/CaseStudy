@@ -2,20 +2,37 @@ var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
 var setinterVal;
 var count = 0;
-// var backgroundmusic;
 var level = 1;
+var backgroundmusic;
+backgroundmusic = new Audio("sound/trafficsound.mp3");
+var carhitsound;
+carhitsound = new Audio("sound/NFF-car-hit.wav");
+var levelupsound;
+levelupsound = new Audio("sound/NFF-coin-04.wav");
 
 
 
 window.addEventListener("keydown",movingHuman);
 window.addEventListener("keyup",stopMoving);
 window.addEventListener("keypress",resetGame);
+window.addEventListener("keypress",startGame);
 
+function showStartScreen(){
+
+    ctx.font = "45px SuperLegendBoy";
+    ctx.fillText("Cpt.AMERICA",50 ,80);
+    ctx.font = "45px SuperLegendBoy";
+    ctx.fillText("Helper",150 ,130);
+    ctx.font = "25px SuperLegendBoy";
+    ctx.fillText("Press ANY KEY",125  ,300);
+    ctx.font = "25px SuperLegendBoy";
+    ctx.fillText("to play",200,327);
+}
 
 
 function startGame() {
-    // backgroundmusic = new Sound("sound/trafficsound.mp3");
-    // backgroundmusic.play();
+    backgroundmusic.play();
+    setTimeout(backgroundmusic.play,10);
     human = new Human(image,250,602,32,48);
     Cars[0] = new Car(37);
     Cars[1] = new Car(160);
@@ -39,8 +56,9 @@ function updateGameScreen() {
             Cars[i].MoveCar();
 
         }else {
+            carhitsound.play();
             StopGame();
-            // backgroundmusic.stop();
+            backgroundmusic.pause();
 
         }
     }
@@ -75,6 +93,7 @@ function changeLevel() {
 function alertLevelUp() {
     ctx.font = "25px SuperLegendBoy"
     ctx.fillText("Level up",200,50);
+    levelupsound.play();
 }
 
 function currentScore() {
@@ -98,21 +117,5 @@ function alertGameOver() {
 }
 
 
-// function Sound(src) {
-//     this.sound = document.createElement("audio");
-//     this.sound.src = src;
-//     this.sound.setAttribute("preload","auto");
-//     this.sound.setAttribute("controls","none");
-//     this.sound.style.display = "none";
-//     document.body.appendChild(this.sound);
-//     this.play = function () {
-//         this.sound.play();
-//
-//     }
-//     this.stop = function () {
-//         this.sound.pause();
-//
-//     }
-//
-// }
+
 

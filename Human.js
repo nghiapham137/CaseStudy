@@ -62,6 +62,7 @@ function movingHuman(evt) {
             human.directionX = -6;
             human.directionY = 0;
             human.isMoving = true;
+
             break;
         case 38:
             human.frameY = 3;
