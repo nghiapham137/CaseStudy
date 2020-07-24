@@ -1,14 +1,18 @@
-var canvas = document.getElementById("myCanvas");
-var ctx = canvas.getContext("2d");
-var setinterVal;
-var count = 0;
-var level = 1;
-var backgroundmusic;
-backgroundmusic = new Audio("sound/trafficsound.mp3");
-var carhitsound;
-carhitsound = new Audio("sound/NFF-car-hit.wav");
-var levelupsound;
-levelupsound = new Audio("sound/NFF-coin-04.wav");
+let canvas = document.getElementById("myCanvas");
+let ctx = canvas.getContext("2d");
+let setinterVal;
+let count = 0;
+let level = 1;
+let backGroundMusic = new Audio("sound/trafficsound.mp3");
+let carHitSound = new Audio("sound/NFF-car-hit.wav");
+let levelUpSound = new Audio("sound/NFF-coin-04.wav");
+
+const keyLeft =37;
+const keyUp = 38;
+const keyRight = 39;
+const keyDown = 40;
+const enterBtn = 13;
+const pixel = 25;
 
 
 
@@ -23,25 +27,25 @@ function showStartScreen(){
     ctx.fillText("Cpt.AMERICA",50 ,80);
     ctx.font = "45px SuperLegendBoy";
     ctx.fillText("Helper",150 ,130);
-    ctx.font = "25px SuperLegendBoy";
+    ctx.font = pixel + "px SuperLegendBoy";
     ctx.fillText("Press SPACE",125  ,300);
-    ctx.font = "25px SuperLegendBoy";
+    ctx.font = pixel + "px SuperLegendBoy";
     ctx.fillText("to play",200,327);
 }
 
 
 function startGame() {
-    backgroundmusic.play();
-    setTimeout(backgroundmusic.play,10);
+    backGroundMusic.play();
+    setTimeout(backGroundMusic.play,10);
     human = new Human(image,250,602,32,48);
-    Cars[0] = new Car(37);
-    Cars[1] = new Car(160);
-    Cars[2] = new Car(280);
-    Cars[3] = new Car(400);
-    Cars[4] = new Car(497);
-    Cars[5] = new Car(540);
-    for (let i = 0; i < Cars.length; i++){
-        Cars[i].show();
+    cars[0] = new Car(37);
+    cars[1] = new Car(160);
+    cars[2] = new Car(280);
+    cars[3] = new Car(400);
+    cars[4] = new Car(497);
+    cars[5] = new Car(540);
+    for (let i = 0; i < cars.length; i++){
+        cars[i].show();
     }
     setinterVal = setInterval(updateGameScreen,20);
 }
@@ -50,20 +54,20 @@ function startGame() {
 function updateGameScreen() {
     ctx.clearRect(0,0,canvas.width,canvas.height);
 
-    for (let i = 0; i < Cars.length; i++){
-        if (!human.Intersect(Cars[i])){
-            Cars[i].Carposition();
-            Cars[i].drawCar();
-            Cars[i].MoveCar();
+    for (let i = 0; i < cars.length; i++){
+        if (!human.inTerSect(cars[i])){
+            cars[i].carPosition();
+            cars[i].drawCar();
+            cars[i].movingCar();
 
         }else {
-            carhitsound.play();
-            StopGame();
-            backgroundmusic.pause();
+            carHitSound.play();
+            stopGame();
+            backGroundMusic.pause();
 
         }
     }
-    human.position();
+    human.huManPosition();
     human.drawImage();
     handleHumanFrame();
     changeLevel();
@@ -71,14 +75,14 @@ function updateGameScreen() {
 }
 
 
-function StopGame() {
+function stopGame() {
     clearInterval(setinterVal);
     alertGameOver();
 }
 
 
 function resetGame(evt) {
-    if (evt.keyCode === 13){
+    if (evt.keyCode === enterBtn){
         location.reload();
     }
 }
@@ -94,22 +98,22 @@ function changeLevel() {
 }
 
 function alertLevelUp() {
-    ctx.font = "25px SuperLegendBoy"
+    ctx.font = pixel + "px SuperLegendBoy";
     ctx.fillText("Level up",200,50);
-    levelupsound.play();
+    levelUpSound.play();
 }
 
 function currentScore() {
     ctx.font = "15px SuperLegendBoy";
     ctx.fillText("Score",430,20);
-    ctx.font = "25px SuperLegendBoy";
+    ctx.font = pixel + "px SuperLegendBoy";
     ctx.fillText(count,450,50);
 }
 
 function alertGameOver() {
-    ctx.font = "25px SuperLegendBoy";
+    ctx.font = pixel + "px SuperLegendBoy";
     ctx.fillText("GAME",215,300);
-    ctx.font = "25px SuperLegendBoy";
+    ctx.font = pixel + "px SuperLegendBoy";
     ctx.fillText("OVER",215,326);
     ctx.font = "16px SuperLegendBoy";
     ctx.fillText("Press ",185,360);

@@ -1,7 +1,6 @@
-var Cars = [];
+var cars = [];
 
 
-//Khởi tạo lớp Cars
 let Car = function (y) {
     this.y = y;
     this.img = new Image();
@@ -26,12 +25,12 @@ let Car = function (y) {
         }
     }
 
-    this.Carposition = function () {
+    this.carPosition = function () {
         this.x += this.directionX;
         this.y += this.directionY;
     }
 
-    this.MoveCar = function () {
+    this.movingCar = function () {
         let num = Math.floor(Math.random()*(8)+1);
         if (this.way <= 0){
             this.directionX = 3 * level;

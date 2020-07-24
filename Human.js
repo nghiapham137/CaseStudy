@@ -1,11 +1,11 @@
 
-var image = new Image();
+let image = new Image();
 image.src = "images/captainamerica.png";
-var human;
+let human;
 
 
 
-//Khởi tạo lớp Human
+
 let Human = function (img,x,y,width,height) {
     this.x = x;
     this.y = y;
@@ -16,6 +16,9 @@ let Human = function (img,x,y,width,height) {
     this.frameX = 0;
     this.frameY = 3;
     this.isMoving = false;
+    this.width_one_third = this.width/3;
+    this.width_two_third = this.width * 2/3;
+    this.height_three_fourth = this.height * 3/4;
 
     this.drawImage = function () {
         ctx.drawImage(img, this.width * this.frameX, this.height * this.frameY,
@@ -23,8 +26,8 @@ let Human = function (img,x,y,width,height) {
 
     }
 
-    //Set vị trí cho Human mỗi khi đi đến chạm đến đỉnh, đáy, 2 bên
-    this.position = function () {
+
+    this.huManPosition = function () {
         if (this.x + this.directionX >= 0 &&
             this.x + this.directionX <= canvas.width - this.width){
             this.x += this.directionX;
@@ -35,17 +38,18 @@ let Human = function (img,x,y,width,height) {
 
     }
 
-    //Set va chạm
-    this.Intersect = function(cars) {
-        var humanLeft = human.x + (human.width/3);
-        var humanRight = human.x + (human.width*2/3);
-        var humanTop = human.y + (human.height*3/4);
-        var humanBottom = human.y + (human.height);
-        var carLeft = cars.x;
-        var carRight = cars.x + (cars.width);
-        var carTop = cars.y;
-        var carBottom = cars.y + (cars.height);
-        var intersect = true;
+
+
+    this.inTerSect = function(cars) {
+        let humanLeft = human.x + human.width_one_third;
+        let humanRight = human.x + human.width_two_third;
+        let humanTop = human.y + human.height_three_fourth;
+        let humanBottom = human.y + (human.height);
+        let carLeft = cars.x;
+        let carRight = cars.x + (cars.width);
+        let carTop = cars.y;
+        let carBottom = cars.y + (cars.height);
+        let intersect = true;
         if (humanLeft > carRight || humanRight < carLeft ||
             humanTop > carBottom || humanBottom < carTop){
             intersect = false;
@@ -57,26 +61,26 @@ let Human = function (img,x,y,width,height) {
 
 function movingHuman(evt) {
     switch (evt.keyCode) {
-        case 37:
+        case keyLeft:
             human.frameY = 1;
             human.directionX = -6;
             human.directionY = 0;
             human.isMoving = true;
 
             break;
-        case 38:
+        case keyUp:
             human.frameY = 3;
             human.directionX = 0;
             human.directionY = -6;
             human.isMoving = true;
             break;
-        case 39:
+        case keyRight:
             human.frameY = 2;
             human.directionX = 6;
             human.directionY = 0;
             human.isMoving = true;
             break;
-        case 40:
+        case keyDown:
             human.frameY = 0;
             human.directionX = 0;
             human.directionY = 6;
