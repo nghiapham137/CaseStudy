@@ -20,7 +20,7 @@ const pixel = 25;
 
 window.addEventListener("keydown",movingHuman);
 window.addEventListener("keyup",stopMoving);
-window.addEventListener("keypress",resetGame);
+
 window.addEventListener("keypress",confirmStartGame);
 
 
@@ -136,6 +136,7 @@ function alertGameOver() {
     ctx.fillText("ENTER ",255,360);
     ctx.font = "16px SuperLegendBoy";
     ctx.fillText("to retry ",220,380);
+    window.addEventListener("keypress",resetGame);
 }
 
 
