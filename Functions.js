@@ -6,12 +6,14 @@ let level = 1;
 let backGroundMusic = new Audio("sound/trafficsound.mp3");
 let carHitSound = new Audio("sound/NFF-car-hit.wav");
 let levelUpSound = new Audio("sound/NFF-coin-04.wav");
+let countSpace = 0;
 
 const keyLeft =37;
 const keyUp = 38;
 const keyRight = 39;
 const keyDown = 40;
 const enterBtn = 13;
+const spaceBtn = 32;
 const pixel = 25;
 
 
@@ -19,7 +21,7 @@ const pixel = 25;
 window.addEventListener("keydown",movingHuman);
 window.addEventListener("keyup",stopMoving);
 window.addEventListener("keypress",resetGame);
-window.addEventListener("keypress",startGame);
+window.addEventListener("keypress",confirmStartGame);
 
 
 function showStartScreen(){
@@ -31,23 +33,36 @@ function showStartScreen(){
     ctx.fillText("Press SPACE",125  ,300);
     ctx.font = pixel + "px SuperLegendBoy";
     ctx.fillText("to play",200,327);
+    confirmStartGame();
 }
 
+function confirmStartGame(evt) {
+    if (evt.keyCode === spaceBtn){
+        countSpace++;
+        if (countSpace === 1){
+            startGame();
+        }
+
+    }
+
+}
 
 function startGame() {
-    backGroundMusic.play();
-    setTimeout(backGroundMusic.play,10);
-    human = new Human(image,250,602,32,48);
-    cars[0] = new Car(37);
-    cars[1] = new Car(160);
-    cars[2] = new Car(280);
-    cars[3] = new Car(400);
-    cars[4] = new Car(497);
-    cars[5] = new Car(540);
-    for (let i = 0; i < cars.length; i++){
-        cars[i].show();
-    }
-    setinterVal = setInterval(updateGameScreen,20);
+        backGroundMusic.play();
+        setTimeout(backGroundMusic.play,10);
+        human = new Human(image,250,602,32,48);
+        cars[0] = new Car(37);
+        cars[1] = new Car(160);
+        cars[2] = new Car(280);
+        cars[3] = new Car(400);
+        cars[4] = new Car(497);
+        cars[5] = new Car(540);
+        for (let i = 0; i < cars.length; i++){
+            cars[i].show();
+        }
+        setinterVal = setInterval(updateGameScreen,20);
+
+
 }
 
 
