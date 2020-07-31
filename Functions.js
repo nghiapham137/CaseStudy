@@ -20,7 +20,6 @@ const pixel = 25;
 
 window.addEventListener("keydown",movingHuman);
 window.addEventListener("keyup",stopMoving);
-
 window.addEventListener("keypress",confirmStartGame);
 
 
@@ -32,7 +31,7 @@ function showStartScreen(){
     ctx.font = pixel + "px SuperLegendBoy";
     ctx.fillText("Press SPACE",125  ,300);
     ctx.font = pixel + "px SuperLegendBoy";
-    ctx.fillText("to play",200,327);
+    ctx.fillText("to play",185,327);
     confirmStartGame();
 }
 
@@ -108,7 +107,7 @@ function changeLevel() {
         human.y = canvas.height - human.height;
         alertLevelUp();
         level += 0.5;
-        count++;
+        count+=10;
     }
 }
 
@@ -121,8 +120,8 @@ function alertLevelUp() {
 function currentScore() {
     ctx.font = "15px SuperLegendBoy";
     ctx.fillText("Score",430,20);
-    ctx.font = pixel + "px SuperLegendBoy";
-    ctx.fillText(count,450,50);
+    ctx.font = "22px SuperLegendBoy";
+    ctx.fillText(count,445,50);
 }
 
 function alertGameOver() {
